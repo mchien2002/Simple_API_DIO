@@ -18,13 +18,16 @@ class _PostScreenState extends State<PostScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: (){
+        title: const Text("Posts", style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,      
+        leading: IconButton(icon: const Icon(Icons.arrow_back), color: Colors.black, onPressed: (){
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const MainScreen())
           );
         },),
-        title: const Text("Posts"),
       ),
       body: SafeArea(
         child: Padding(

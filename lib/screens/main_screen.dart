@@ -43,20 +43,27 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+
   Widget buidlButton(String btnText, Color btnColor){
     return Container(
+      height: MediaQuery.of(context).size.height * 0.3,
       color: Colors.white,
       padding: const EdgeInsets.all(5),
       child: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
+          borderRadius: BorderRadius.circular(5.0),
           side: BorderSide(color: btnColor),
         ),
         onPressed: () => btnPress(btnText),
         padding: const EdgeInsets.all(10.0),
         color: btnColor,
-        textColor: Colors.white,
-        child: Text(btnText, style: const TextStyle(fontSize: 20),),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+          const Icon(Icons.abc),
+          Text(btnText, style: const TextStyle(fontSize: 20, color: Colors.black),),
+        ],)
       ),
     );
   }
@@ -65,37 +72,43 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("API USING DIO"),
+        title: const Text("API APP", style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,      
+        leading: IconButton(icon: const Icon(Icons.home_filled), color: Colors.black, onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MainScreen())
+          );
+        },),
       ),
 
-      body: Column(
-        // ignore: prefer_const_literals_to_create_immutables
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:<Widget>[
-              buidlButton("USERS", Colors.blue),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:<Widget>[
-              buidlButton("POSTS", Colors.blue),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:<Widget>[
-              buidlButton("COMMENTS", Colors.blue),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:<Widget>[
-              buidlButton("TODOS", Colors.blue),
-            ],
-          ),
-        ],      
+          // ignore: sized_box_for_whitespace
+          Container(
+            width: MediaQuery.of(context).size.width * 1,
+            child: Table(
+              children: [
+                TableRow(
+                  children: [
+                    buidlButton("USERS", const Color.fromRGBO(245, 245, 152, 1)),
+                    buidlButton("POSTS", Colors.blue),
+                  ]
+                ),
+
+                TableRow(
+                  children: [
+                    buidlButton("COMMENTS", Colors.blue),
+                    buidlButton("TODOS", Colors.blue),
+                  ]
+                )
+              ]
+            ),
+          )
+        ],
       ),
     );
   }

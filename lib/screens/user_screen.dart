@@ -14,44 +14,20 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
 
-  // Future<List<User>> listUsers;
-
-  // @override
-  // void initState(){
-  //   super.initState();
-  //   // ServiceAPI().listUsers = ServiceAPI().getListUser();
-  //   listUsers = getListUser();
-  // }
-
-  // Future<List<User>> getListUser() async {
-  //   try{
-  //     Response response = await Dio().get('https://gorest.co.in/public/v2/users');
-
-  //     if (response.statusCode == 200){
-  //       var getUserData = response.data as List;
-  //       var listUsers = getUserData.map((i) => User.fromJson(i)).toList();
-  //       return listUsers;
-  //     }
-  //     else{
-  //       throw Exception('Failed to load users');
-  //     }
-  //   }
-  //   catch(e){
-  //       print(e);
-  //     }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: (){
+        title: const Text("Users", style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.transparent,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        leading: IconButton(icon: const Icon(Icons.arrow_back), color: Colors.black, onPressed: (){
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const MainScreen())
           );
         },),
-        title: const Text("Users"),
       ),
       body: SafeArea(
         child: Padding(
