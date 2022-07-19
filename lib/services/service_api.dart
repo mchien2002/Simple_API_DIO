@@ -1,9 +1,12 @@
+// ignore_for_file: missing_return, duplicate_ignore
+
 import 'package:dio/dio.dart';
 import 'package:my_api_app/models/comment.dart';
 import 'package:my_api_app/models/post.dart';
 import 'package:my_api_app/models/todo.dart';
 import '../models/user.dart';
 
+// ignore: duplicate_ignore
 class ServiceAPI{
   Future<List<User>> listUsers;
   Future<List<Post>> listPosts;

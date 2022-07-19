@@ -16,12 +16,12 @@ class Comment {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['post_id'] = this.postId;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['body'] = this.body;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['post_id'] = postId;
+    data['name'] = name;
+    data['email'] = email;
+    data['body'] = body;
     return data;
   }
 }

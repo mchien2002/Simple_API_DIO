@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_api_app/screens/main_screen.dart';
-import 'package:my_api_app/screens/user_screen.dart';
 
 void main(List<String> args) {
   runApp(const MyAPIApp());

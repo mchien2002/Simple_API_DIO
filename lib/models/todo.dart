@@ -16,12 +16,12 @@ class Todo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['title'] = this.title;
-    data['due_on'] = this.dueOn;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['title'] = title;
+    data['due_on'] = dueOn;
+    data['status'] = status;
     return data;
   }
 }
