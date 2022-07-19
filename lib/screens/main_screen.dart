@@ -61,8 +61,7 @@ class _MainScreenState extends State<MainScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-          const Icon(Icons.abc),
-          Text(btnText, style: const TextStyle(fontSize: 20, color: Colors.black),),
+            Text(btnText, style: const TextStyle(fontSize: 20, color: Colors.black),),
         ],)
       ),
     );
