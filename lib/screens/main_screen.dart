@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:my_api_app/init.dart';
 import 'package:my_api_app/screens/comment_screen.dart';
 import 'package:my_api_app/screens/post_screen.dart';
 import 'package:my_api_app/screens/todo_screen.dart';
@@ -43,6 +44,23 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  // ignore: missing_return
+  Icon buildIcon(String btnText){
+    if (btnText == "USERS"){
+      return const Icon(Icons.supervised_user_circle);
+    }
+    else if (btnText == "POSTS"){
+      return const Icon(Icons.local_post_office);
+    }
+    else if (btnText == "COMMENTS"){
+      return const Icon(Icons.mode_comment);
+    }
+    else if (btnText == "TODOS"){
+      return const Icon(Icons.home_work);
+    }
+    return const Icon(Icons.hourglass_empty);
+  }
+
 
   Widget buidlButton(String btnText, Color btnColor){
     return Container(
@@ -61,6 +79,7 @@ class _MainScreenState extends State<MainScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
+            buildIcon(btnText),
             Text(btnText, style: const TextStyle(fontSize: 20, color: Colors.black),),
         ],)
       ),
@@ -93,15 +112,15 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 TableRow(
                   children: [
-                    buidlButton("USERS", const Color.fromRGBO(245, 245, 152, 1)),
-                    buidlButton("POSTS", Colors.blue),
+                    buidlButton("USERS", UserColor),
+                    buidlButton("POSTS", PostColor),
                   ]
                 ),
 
                 TableRow(
                   children: [
-                    buidlButton("COMMENTS", Colors.blue),
-                    buidlButton("TODOS", Colors.blue),
+                    buidlButton("COMMENTS", CommentColor),
+                    buidlButton("TODOS", TodoColor),
                   ]
                 )
               ]

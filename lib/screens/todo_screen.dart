@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_api_app/init.dart';
 import 'package:my_api_app/models/todo.dart';
 import 'package:my_api_app/screens/main_screen.dart';
 import 'package:my_api_app/services/service_api.dart';
@@ -19,7 +20,7 @@ class _TodoScreenState extends State<TodoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Todos", style: TextStyle(color: Colors.black),),
-        backgroundColor: Colors.transparent,
+        backgroundColor: TodoColor,
         bottomOpacity: 0.0,
         elevation: 0.0,      
         leading: IconButton(icon: const Icon(Icons.arrow_back), color: Colors.black, onPressed: (){
@@ -31,7 +32,7 @@ class _TodoScreenState extends State<TodoScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: Column(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
