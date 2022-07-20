@@ -19,7 +19,7 @@ class _PostScreenState extends State<PostScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Posts", style: TextStyle(color: Colors.black),),
+        title: PostIcon,
         backgroundColor: PostColor,
         bottomOpacity: 0.0,
         elevation: 0.0,      
@@ -43,7 +43,7 @@ class _PostScreenState extends State<PostScreen> {
               Expanded(
                 child: FutureBuilder<List<Post>>(
                   // future: ServiceAPI().listUsers,
-                  future: ServiceAPI().getListPost("https://gorest.co.in/public/v2/posts"),
+                  future: ServiceAPI().getListPost("posts"),
                   builder: (context, snapshot){
                     if (!snapshot.hasData){
                       return const Center(child: CircularProgressIndicator());

@@ -19,7 +19,7 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Users", style: TextStyle(color: Colors.black),),
+        title: UserIcon,
         backgroundColor: UserColor,
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -32,18 +32,18 @@ class _UserScreenState extends State<UserScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Column(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
 
               Expanded(
                 child: FutureBuilder<List<User>>(
                   // future: ServiceAPI().listUsers,
-                  future: ServiceAPI().getListUser("https://gorest.co.in/public/v2/users"),
+                  future: ServiceAPI().getListUser("users"),
                   builder: (context, snapshot){
                     if (!snapshot.hasData){
                       return const Center(child: CircularProgressIndicator());
@@ -54,16 +54,55 @@ class _UserScreenState extends State<UserScreen> {
                         itemBuilder: (context, index){
                           var user = (snapshot.data)[index];
                           return Container(
+                            decoration: BoxDecoration(
+                              color: UserColor,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.8),
+                                  blurRadius: 3,
+                                  offset: const Offset(0, 2), // changes position of shadow
+                                ),
+                              ]
+                            ),
                             padding: const EdgeInsets.all(10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(user.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                                Text(user.email, style: const TextStyle(fontSize: 12),),
-                                Text(user.gender.toString(), style: const TextStyle(fontSize: 12),),
-                                Text(user.status.toString(), style: const TextStyle(fontSize: 12),),
-                              ],
-                            ));
+                            margin: const EdgeInsets.only(
+                              bottom: 10,
+                            ),
+                            
+                            child: Row(children: [
+                              const SizedBox(width: 10, height: 10,),
+                              const Icon(Icons.supervisor_account_outlined, size: 40,),
+                              const SizedBox(width: 20, height: 10,),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(user.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                                  Row(children: [
+                                    const Icon(Icons.mail, size: 22,),
+                                    const SizedBox(width: 5, height: 30,),
+                                    Text(user.email, style: const TextStyle(fontSize: 13),),
+                                  ],),
+                                  Row(children: [
+                                    const Icon(Icons.transgender, size: 22,),
+                                    const SizedBox(width: 5, height: 10,),
+                                    Text(user.gender.toString(), style: const TextStyle(fontSize: 13),),
+                                  ],),
+                                  Row(children: [
+                                    const Icon(Icons.verified_user, size: 22,),
+                                    const SizedBox(width: 5, height: 10,),
+                                    Text(user.status.toString(), style: const TextStyle(fontSize: 13),),
+                                  ],),
+                                ],
+                              )
+                              ]
+                            ),
+                          );
                         },
                       );
                     }

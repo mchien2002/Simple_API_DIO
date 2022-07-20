@@ -19,7 +19,7 @@ class _TodoScreenState extends State<TodoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Todos", style: TextStyle(color: Colors.black),),
+        title: TodoIcon,
         backgroundColor: TodoColor,
         bottomOpacity: 0.0,
         elevation: 0.0,      
@@ -43,7 +43,7 @@ class _TodoScreenState extends State<TodoScreen> {
               Expanded(
                 child: FutureBuilder<List<Todo>>(
                   // future: ServiceAPI().listUsers,
-                  future: ServiceAPI().getListTodo("https://gorest.co.in/public/v2/todos"),
+                  future: ServiceAPI().getListTodo("todos"),
                   builder: (context, snapshot){
                     if (!snapshot.hasData){
                       return const Center(child: CircularProgressIndicator());

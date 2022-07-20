@@ -44,25 +44,7 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  // ignore: missing_return
-  Icon buildIcon(String btnText){
-    if (btnText == "USERS"){
-      return const Icon(Icons.supervised_user_circle);
-    }
-    else if (btnText == "POSTS"){
-      return const Icon(Icons.local_post_office);
-    }
-    else if (btnText == "COMMENTS"){
-      return const Icon(Icons.mode_comment);
-    }
-    else if (btnText == "TODOS"){
-      return const Icon(Icons.home_work);
-    }
-    return const Icon(Icons.hourglass_empty);
-  }
-
-
-  Widget buidlButton(String btnText, Color btnColor){
+  Widget buidlButton(String btnText, Color btnColor, Icon btnIcon){
     return Container(
       height: MediaQuery.of(context).size.height * 0.3,
       color: Colors.white,
@@ -79,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            buildIcon(btnText),
+            btnIcon,
             Text(btnText, style: const TextStyle(fontSize: 20, color: Colors.black),),
         ],)
       ),
@@ -112,15 +94,15 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 TableRow(
                   children: [
-                    buidlButton("USERS", UserColor),
-                    buidlButton("POSTS", PostColor),
+                    buidlButton("USERS", UserColor, UserIcon),
+                    buidlButton("POSTS", PostColor, PostIcon),
                   ]
                 ),
 
                 TableRow(
                   children: [
-                    buidlButton("COMMENTS", CommentColor),
-                    buidlButton("TODOS", TodoColor),
+                    buidlButton("COMMENTS", CommentColor, CommentIcon),
+                    buidlButton("TODOS", TodoColor, TodoIcon),
                   ]
                 )
               ]

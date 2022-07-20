@@ -19,7 +19,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Comments", style: TextStyle(color: Colors.black),),
+        title: CommentIcon,
         backgroundColor: CommentColor,
         bottomOpacity: 0.0,
         elevation: 0.0,      
@@ -43,7 +43,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
               Expanded(
                 child: FutureBuilder<List<Comment>>(
                   // future: ServiceAPI().listUsers,
-                  future: ServiceAPI().getListComment("https://gorest.co.in/public/v2/comments"),
+                  future: ServiceAPI().getListComment("comments"),
                   builder: (context, snapshot){
                     if (!snapshot.hasData){
                       return const Center(child: CircularProgressIndicator());
