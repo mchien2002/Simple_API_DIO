@@ -8,6 +8,11 @@ import '../models/user.dart';
 
 // ignore: duplicate_ignore
 class ServiceAPI{
+  List<User> listUsers;
+  List<Post> listPosts;
+  List<Comment> listComments;
+  List<Todo> listTodos;
+
   final String baseURL = "https://gorest.co.in/public/v2/";
   Dio _dio;
 
@@ -15,14 +20,17 @@ class ServiceAPI{
     _dio = Dio(BaseOptions(baseUrl: baseURL));
   }
 
+  Future<Response> get(String endPoint) async{
+    Response response = await _dio.get(endPoint);
+
+    return response;
+  }
   // Chuyển json thành list bằng dio
   // ignore: missing_return
   Future<List<User>> getListUser(String endPoint) async {
-    ServiceAPI();
-    List<User> listUsers;
 
     try{
-      Response response = await _dio.get(endPoint);
+      Response response = await get(endPoint);
       if (response.statusCode == 200){
         var getUserData = response.data as List;
         listUsers = getUserData.map((i) => User.fromJson(i)).toList();
@@ -39,13 +47,12 @@ class ServiceAPI{
   }
 
   Future<List<Post>> getListPost(String endPoint) async {
-    List<Post> listPosts;
     try{
-      Response response = await _dio.get(endPoint);
+      Response response = await get(endPoint);
 
       if (response.statusCode == 200){
-        var getUserData = response.data as List;
-        listPosts = getUserData.map((i) => Post.fromJson(i)).toList();
+        var getPostData = response.data as List;
+        listPosts = getPostData.map((i) => Post.fromJson(i)).toList();
         return listPosts;
       }
       else{
@@ -59,13 +66,12 @@ class ServiceAPI{
   }
 
   Future<List<Comment>> getListComment(String endPoint) async {
-    List<Comment> listComments;
     try{
-      Response response = await _dio.get(endPoint);
+      Response response = await get(endPoint);
 
       if (response.statusCode == 200){
-        var getUserData = response.data as List;
-        listComments = getUserData.map((i) => Comment.fromJson(i)).toList();
+        var getCommentData = response.data as List;
+        listComments = getCommentData.map((i) => Comment.fromJson(i)).toList();
         return listComments;
       }
       else{
@@ -78,13 +84,12 @@ class ServiceAPI{
       }
   }
   Future<List<Todo>> getListTodo(String endPoint) async {
-    List<Todo> listTodos;
     try{
-      Response response = await _dio.get(endPoint);
+      Response response = await get(endPoint);
 
       if (response.statusCode == 200){
-        var getUserData = response.data as List;
-        listTodos = getUserData.map((i) => Todo.fromJson(i)).toList();
+        var getTodoData = response.data as List;
+        listTodos = getTodoData.map((i) => Todo.fromJson(i)).toList();
         return listTodos;
       }
       else{

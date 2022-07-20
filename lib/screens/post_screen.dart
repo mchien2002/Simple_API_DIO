@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:my_api_app/init.dart';
 import 'package:my_api_app/models/post.dart';
+import 'package:my_api_app/models/user.dart';
 import 'package:my_api_app/screens/main_screen.dart';
 import 'package:my_api_app/services/service_api.dart';
 
@@ -13,7 +15,36 @@ class PostScreen extends StatefulWidget {
   _PostScreenState createState() => _PostScreenState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _PostScreenState extends State<PostScreen>{
+  // ignore: non_constant_identifier_names
+  List<User> ListUsers;
+
+  void getListUsers() async{
+    Response response = await ServiceAPI().get("users");
+
+    setState(() {
+      var getUserData = response.data as List;
+      var listUsers = getUserData.map((i) => User.fromJson(i)).toList();
+      ListUsers = listUsers;
+    });
+  }
+
+  // ignore: missing_return
+  String getUserName (int id, List<User> users){
+    for (User item in users){
+      if (id == item.id){
+        return item.name;
+      }
+    }
+    return "Unknown";
+  }
+
+  @override
+  void initState(){
+    ServiceAPI();
+    getListUsers();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +73,6 @@ class _PostScreenState extends State<PostScreen> {
 
               Expanded(
                 child: FutureBuilder<List<Post>>(
-                  // future: ServiceAPI().listUsers,
                   future: ServiceAPI().getListPost("posts"),
                   builder: (context, snapshot){
                     if (!snapshot.hasData){
@@ -54,11 +84,28 @@ class _PostScreenState extends State<PostScreen> {
                         itemBuilder: (context, index){
                           var post = (snapshot.data)[index];
                           return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              boxShadow: [  
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.9),
+                                  blurRadius: 3,
+                                  offset: const Offset(0, 2), // changes position of shadow
+                                ),
+                              ]
+                            ),
                             padding: const EdgeInsets.all(10),
+                            margin: const EdgeInsets.only(bottom: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(post.userId.toString(), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                                Text(getUserName(post.userId, ListUsers), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                                 Text(post.title, style: const TextStyle(fontSize: 12),),
                                 Text(post.body.toString(), style: const TextStyle(fontSize: 12),),
                               ],
