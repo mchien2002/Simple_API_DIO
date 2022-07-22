@@ -79,14 +79,16 @@ class _UserScreenState extends State<UserScreen> {
                               const SizedBox(width: 10, height: 10,),
                               const Icon(Icons.supervisor_account_outlined, size: 40,),
                               const SizedBox(width: 20, height: 10,),
-                              Column(
+                              Expanded(
+                                child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(user.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                                  Row(children: [
+                                  Row(
+                                    children: [
                                     const Icon(Icons.mail, size: 22,),
                                     const SizedBox(width: 5, height: 30,),
-                                    Text(user.email, style: const TextStyle(fontSize: 13),),
+                                    Text(user.email, style: const TextStyle(fontSize: 13), overflow: TextOverflow.fade,),
                                   ],),
                                   Row(children: [
                                     const Icon(Icons.transgender, size: 22,),
@@ -100,6 +102,7 @@ class _UserScreenState extends State<UserScreen> {
                                   ],),
                                 ],
                               )
+                              ),
                               ]
                             ),
                           );
