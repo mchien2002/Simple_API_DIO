@@ -105,7 +105,14 @@ class _PostScreenState extends State<PostScreen>{
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(getUserName(post.userId, ListUsers), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                                Row(
+                                  children: [
+                                    Icon(Icons.person, color: PostColor,),
+                                    const SizedBox(width: 5,),
+                                    Text(getUserName(post.userId, ListUsers), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                                const SizedBox(height: 10,),
                                 Text(post.title, style: const TextStyle(fontSize: 12),),
                                 Text(post.body.toString(), style: const TextStyle(fontSize: 12),),
                               ],

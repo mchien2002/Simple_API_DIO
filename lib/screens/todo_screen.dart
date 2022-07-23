@@ -15,6 +15,13 @@ class TodoScreen extends StatefulWidget {
 
 class _TodoScreenState extends State<TodoScreen> {
 
+  Icon checkStatus(String status){
+    if (status == "completed"){
+      return const Icon(Icons.check_circle, color: Colors.green, size: 30,);
+    }
+    return const Icon(Icons.pending, color: Colors.red, size: 30,);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,14 +61,33 @@ class _TodoScreenState extends State<TodoScreen> {
                         itemBuilder: (context, index){
                           var todo = (snapshot.data)[index];
                           return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              boxShadow: [  
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.9),
+                                  blurRadius: 3,
+                                  offset: const Offset(0, 2), // changes position of shadow
+                                ),
+                              ]
+                            ),
                             padding: const EdgeInsets.all(10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            margin: const EdgeInsets.only(top: 15),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                Text(todo.title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                                Text(todo.dueOn, style: const TextStyle(fontSize: 12),),
-                                Text(todo.status, style: const TextStyle(fontSize: 12),),
-                              ],
+                                Expanded(
+                                  child: Text(todo.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+                                ),
+                                const SizedBox(width: 30,),
+                                checkStatus(todo.status),
+                             ],
                             ));
                         },
                       );

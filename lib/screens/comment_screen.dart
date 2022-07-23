@@ -54,13 +54,38 @@ class _CommentsScreenState extends State<CommentsScreen> {
                         itemBuilder: (context, index){
                           var comment = (snapshot.data)[index];
                           return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                              boxShadow: [  
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.9),
+                                  blurRadius: 3,
+                                  offset: const Offset(0, 2), // changes position of shadow
+                                ),
+                              ]
+                            ),
                             padding: const EdgeInsets.all(10),
+                            margin: const EdgeInsets.only(top: 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(comment.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                                Text(comment.email, style: const TextStyle(fontSize: 12),),
-                                Text(comment.body, style: const TextStyle(fontSize: 12),),
+                                Row(
+                                  children: [
+                                    Icon(Icons.person, size: 40, color: CommentColor,),
+                                    const SizedBox(width: 5,),
+                                    Text(comment.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.only(left: 45, top: 10, bottom: 5),
+                                  child: Text(comment.body, style: const TextStyle(fontSize: 13),)
+                                ),
                               ],
                             ));
                         },
