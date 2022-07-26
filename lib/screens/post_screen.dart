@@ -31,12 +31,14 @@ class _PostScreenState extends State<PostScreen>{
 
   // ignore: missing_return
   String getUserName (int id, List<User> users){
-    for (User item in users){
-      if (id == item.id){
-        return item.name;
+    if (users != null){
+      for (User item in users){
+        if (id == item.id){
+          return item.name;
+        }
       }
+      return "Unknown";
     }
-    return "Unknown";
   }
 
   @override
@@ -82,6 +84,7 @@ class _PostScreenState extends State<PostScreen>{
                       return ListView.builder(
                         itemCount: snapshot.data?.length,
                         itemBuilder: (context, index){
+                          // getListUsers();
                           var post = (snapshot.data)[index];
                           return Container(
                             decoration: BoxDecoration(
